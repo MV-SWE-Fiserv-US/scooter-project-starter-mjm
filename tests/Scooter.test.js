@@ -1,5 +1,5 @@
 const { describe, expect, it } = require("@jest/globals");
-const Scooter = require("../classes/Scooter.js");
+const Scooter = require("../src/Scooter.js");
 
 describe("scooter.rent(user)", () => {
   const scooter = new Scooter('station1');
@@ -30,20 +30,3 @@ describe("scooter.dock(station)", () => {
   });
 });
 
-
-
-/*describe("scooter.charge()", () => {
-  it.skip("charges a scooter", () => {
-    // Arrange
-    // Act
-    // Assert
-  });
-});
-
-describe("scooter.repair()", () => {
-  it.skip("repairs a scooter", () => {
-    // Arrange
-    // Act
-    // Assert
-  });
-});*/
