@@ -11,6 +11,12 @@ describe("registerUser method tests", () => {
     let response = scooterApp.registerUser("Joe Bloggs", "test123", 21);
     expect(response).toBeInstanceOf(User);
   });
+  test('should throw an error', () => {
+    expect(() => scooterApp.registerUser("Joe Bloggs", "test123", 21)).toThrow('User is already registered')
+  })
+  test('should throw an error', () => {
+    expect(() => scooterApp.registerUser("Joebus Blogbert", "tester123", 16)).toThrow('Too young to register')
+  })
 });
 
 // log in
@@ -99,6 +105,9 @@ describe('dock scooter tests', () => {
 describe('invalid station docking', ()=>{
   test('should throw No such station error', ()=>{
     expect(()=>scooterApp.dockScooter(scooter13,'jfk')).toThrow('No such station')
+  })
+  test('should throw No such station error', ()=>{
+    expect(()=>scooterApp.createScooter(scooter13,'jfk')).toThrow('No such station')
   })
 })
 
