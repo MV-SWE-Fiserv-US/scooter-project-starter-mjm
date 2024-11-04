@@ -1,32 +1,42 @@
-const { describe, expect, it } = require("@jest/globals");
-const Scooter = require("../src/Scooter.js");
+const Scooter = require('../src/Scooter')
+const User = require('../src/User')
 
-describe("scooter.rent(user)", () => {
-  const scooter = new Scooter('station1');
+const scooter = new Scooter('Denver');
 
-  it("checks a scooter out to a user", () => {
-    scooter.charge = 30;
-    scooter.isBroken = false;
-    expect(scooter.rent('mel')).toEqual('mel');
+//typeof scooter === object
+describe('scooter object', () => {
+  test('Scooter class should create Scooter instance', () => {
+    expect(scooter).toBeInstanceOf(Scooter);
   });
+})
 
-  it("throws an error if battery dead or scooter broken", () => {
-    scooter.charge = 10;
-    scooter.isBroken = false;
-    expect(() => scooter.rent('mel')).toThrow('scooter needs to charge');
-    
-    scooter.charge = 30;
-    scooter.isBroken = true;
-    expect(() => scooter.rent('mel')).toThrow('scooter needs repair');
-  });
-});
+//Method tests
+describe('scooter methods', () => {
+  // tests here!
+  //rent method
+  test('rent should assign a user', () => {
+    let joeBloggs = new User("Joe Bloggs", "test123", 21)
+    scooter.rent(joeBloggs)
+    expect(scooter.user).toEqual(joeBloggs)
+  })
+  test('rent should throw an error', () => {
+    let joeBloggs = new User("Joe Bloggs", "test123", 21)
+    scooter.isBroken = true
+    expect(() => scooter.rent(joeBloggs)).toThrow('scooter needs repair')
+  })
+  //dock method
+  test('the station shoudl equal Denver', () => {
+    scooter.dock('Denver')
+    expect(scooter.station).toEqual('Denver')
+  })
+  test('the user shoudl equal null', () => {
+    scooter.dock('Denver')
+    expect(scooter.user).toEqual(null)
+  })
 
-describe("scooter.dock(station)", () => {
-  it("returns a scooter to a station", () => {
-    const scooter = new Scooter('station1');
-    expect(scooter.dock('station2')).toBeUndefined(); // dock method returns nothing
-    expect(scooter.station).toBe('station2');
-    expect(scooter.user).toBeNull();
-  });
-});
+  //requestRepair method
+  
 
+  //charge method
+
+})
